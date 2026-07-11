@@ -27,15 +27,15 @@ https://artifacts.nikitayugov.com/mcp
 
 The server exposes `publish_html` with `html` and optional `ttlSeconds` arguments. It returns the public URL as text and `{ id, url, expiresAt }` as structured content. The MCP endpoint is intentionally unauthenticated, matching the REST upload API.
 
-## Upload IP allowlist
+## IP allowlist
 
-Both write surfaces are checked against `vars.UPLOAD_ALLOWED_IPS` in `wrangler.jsonc` using Cloudflare's `CF-Connecting-IP` value. Public artifact reads are unaffected.
+Every HTTP route is checked against `vars.UPLOAD_ALLOWED_IPS` in `wrangler.jsonc` using Cloudflare's `CF-Connecting-IP` value. This includes public artifact reads, the landing page, health, `/SKILL.md`, REST uploads, and MCP.
 
 ```jsonc
 "UPLOAD_ALLOWED_IPS": ["203.0.113.10", "2001:db8::10"]
 ```
 
-Only exact IPv4 and IPv6 addresses are accepted; CIDR ranges are not expanded. Production currently uses `"*"`, so REST and MCP uploads are open from every source IP.
+Only exact IPv4 and IPv6 addresses are accepted; CIDR ranges are not expanded. A `"*"` entry disables enforcement and should not be used when the service must be private.
 
 ## Development and deployment
 
@@ -48,4 +48,4 @@ npx wrangler r2 bucket create cloud-artifacts
 npm run deploy
 ```
 
-The Worker claims `artifacts.nikitayugov.com` and runs hourly cleanup. Expiration is also enforced on every read. Because uploads have no identity-based authentication, keep the IP list narrow and consider a Cloudflare WAF rate-limit rule for both write endpoints.
+The Worker runs hourly cleanup. Expiration is also enforced on every artifact read. Because the service has no identity-based authentication, keep the IP list narrow and consider a Cloudflare WAF rate-limit rule.

@@ -1,5 +1,5 @@
 import { cleanupExpired } from "./cleanup";
-import { requireAllowedUploadIp } from "./access";
+import { requireAllowedIp } from "./access";
 import { UPLOAD_PATH, UUID_PATH } from "./constants";
 import { json, methodNotAllowed } from "./http";
 import { landingPage } from "./landing";
@@ -30,6 +30,9 @@ export default {
 } satisfies ExportedHandler<Env>;
 
 async function route(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
+  const denied = requireAllowedIp(request, env.UPLOAD_ALLOWED_IPS);
+  if (denied) return denied;
+
   const url = new URL(request.url);
   if (url.pathname === "/") {
     return request.method === "GET" || request.method === "HEAD"
@@ -43,11 +46,11 @@ async function route(request: Request, env: Env, ctx: ExecutionContext): Promise
   }
   if (url.pathname === "/health" && request.method === "GET") return json({ status: "ok" });
   if (url.pathname === MCP_PATH) {
-    return requireAllowedUploadIp(request, env.UPLOAD_ALLOWED_IPS) ?? handleMcp(request, env, ctx);
+    return handleMcp(request, env, ctx);
   }
   if (url.pathname === UPLOAD_PATH) {
     if (request.method !== "POST") return methodNotAllowed("POST");
-    return requireAllowedUploadIp(request, env.UPLOAD_ALLOWED_IPS) ?? uploadArtifact(request, url, env);
+    return uploadArtifact(request, url, env);
   }
   const match = UUID_PATH.exec(url.pathname);
   if (match && (request.method === "GET" || request.method === "HEAD")) {

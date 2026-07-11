@@ -5,7 +5,7 @@ export default defineConfig({
   plugins: [
     cloudflareTest({
       wrangler: { configPath: "./wrangler.jsonc" },
-      miniflare: { bindings: { UPLOAD_ALLOWED_IPS: ["*"] } },
+      miniflare: { bindings: { UPLOAD_ALLOWED_IPS: ["203.0.113.10"] } },
     }),
   ],
 });

@@ -1,28 +1,48 @@
 {
-  "$schema": "./node_modules/wrangler/config-schema.json",
-  "name": "cloud-artifacts",
-  "main": "src/index.ts",
-  "compatibility_date": "2026-07-11",
-  "compatibility_flags": ["nodejs_compat"],
-  "rules": [
-    { "type": "Text", "globs": ["**/*.md"], "fallthrough": true }
-  ],
-  "routes": [
-    { "pattern": "artifacts.nikitayugov.com", "custom_domain": true }
-  ],
-  "r2_buckets": [
-    { "binding": "ARTIFACTS", "bucket_name": "cloud-artifacts" }
-  ],
-  "triggers": { "crons": ["0 * * * *"] },
-  "vars": {
-    "MAX_HTML_BYTES": "5242880",
-    "MAX_TTL_SECONDS": "31536000",
-    "PUBLIC_BASE_URL": "https://artifacts.nikitayugov.com",
-    // Exact IPv4 and/or IPv6 agent egress addresses allowed to use REST and MCP uploads.
-    "UPLOAD_ALLOWED_IPS": ["*"]
-  },
-  "observability": {
-    "enabled": true,
-    "logs": { "head_sampling_rate": 1 }
-  }
+	"$schema": "./node_modules/wrangler/config-schema.json",
+	"name": "cloud-artifacts",
+	"main": "src/index.ts",
+	"compatibility_date": "2026-07-11",
+	"compatibility_flags": [
+		"nodejs_compat"
+	],
+	"rules": [
+		{
+			"type": "Text",
+			"globs": [
+				"**/*.md"
+			],
+			"fallthrough": true
+		}
+	],
+	"routes": [
+		{
+			"pattern": "artifacts.nikitayugov.com",
+			"custom_domain": true
+		}
+	],
+	"r2_buckets": [
+		{
+			"binding": "ARTIFACTS",
+			"bucket_name": "cloud-artifacts"
+		}
+	],
+	"triggers": {
+		"crons": [
+			"0 * * * *"
+		]
+	},
+	"vars": {
+		"MAX_HTML_BYTES": "5242880",
+		"MAX_TTL_SECONDS": "31536000",
+		"PUBLIC_BASE_URL": "https://artifacts.nikitayugov.com",
+		// Exact IPv4 and/or IPv6 agent egress addresses allowed to use REST and MCP uploads.
+		"UPLOAD_ALLOWED_IPS": ["*"]
+	},
+	"observability": {
+		"enabled": true,
+		"logs": {
+			"head_sampling_rate": 1
+		}
+	}
 }

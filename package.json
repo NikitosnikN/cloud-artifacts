@@ -10,7 +10,8 @@
     "typecheck": "tsc --noEmit",
     "types": "wrangler types",
     "types:check": "wrangler types --check",
-    "check": "npm run types:check && npm run typecheck && npm test && wrangler deploy --dry-run"
+    "check": "npm run types:check && npm run typecheck && npm test && wrangler deploy --dry-run",
+    "wrangler": "wrangler"
   },
   "devDependencies": {
     "@cloudflare/vitest-pool-workers": "^0.18.4",

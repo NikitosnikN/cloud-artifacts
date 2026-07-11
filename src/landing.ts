@@ -60,7 +60,7 @@ const PAGE = `<!doctype html>
         <div class="fact"><strong>HTML only</strong><span>5 MiB default limit</span></div>
         <div class="fact"><strong>REST + MCP</strong><span>One publishing tool</span></div>
         <div class="fact"><strong>Optional TTL</strong><span>Read-time expiry + cleanup</span></div>
-        <div class="fact"><strong>Controlled writes</strong><span>Config-based IP allowlist</span></div>
+        <div class="fact"><strong>Controlled access</strong><span>IP-allowlisted reads and writes</span></div>
       </div>
     </section>
 
