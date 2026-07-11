@@ -5,6 +5,7 @@ import { json, methodNotAllowed } from "./http";
 import { landingPage } from "./landing";
 import { handleMcp, MCP_PATH } from "./mcp";
 import { serveArtifact } from "./serve";
+import { skillDocument } from "./skill";
 import { uploadArtifact } from "./upload";
 
 export default {
@@ -33,6 +34,11 @@ async function route(request: Request, env: Env, ctx: ExecutionContext): Promise
   if (url.pathname === "/") {
     return request.method === "GET" || request.method === "HEAD"
       ? landingPage(request.method)
+      : methodNotAllowed("GET, HEAD");
+  }
+  if (url.pathname === "/SKILL.md") {
+    return request.method === "GET" || request.method === "HEAD"
+      ? skillDocument(request.method)
       : methodNotAllowed("GET, HEAD");
   }
   if (url.pathname === "/health" && request.method === "GET") return json({ status: "ok" });

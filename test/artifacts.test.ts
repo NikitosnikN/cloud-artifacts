@@ -75,6 +75,24 @@ describe("landing page", () => {
   });
 });
 
+describe("skill document", () => {
+  it("serves the packaged skill source at /SKILL.md", async () => {
+    const response = await SELF.fetch("https://example.com/SKILL.md");
+    expect(response.status).toBe(200);
+    expect(response.headers.get("content-type")).toBe("text/markdown; charset=utf-8");
+    expect(response.headers.get("access-control-allow-origin")).toBe("*");
+    const markdown = await response.text();
+    expect(markdown).toContain("name: share-artifact");
+    expect(markdown).toContain("https://artifacts.nikitayugov.com/mcp");
+  });
+
+  it("supports HEAD without returning the skill body", async () => {
+    const response = await SELF.fetch("https://example.com/SKILL.md", { method: "HEAD" });
+    expect(response.status).toBe(200);
+    expect(await response.text()).toBe("");
+  });
+});
+
 describe("TTL cleanup", () => {
   it("returns 410 for expired artifacts", async () => {
     const id = "123e4567-e89b-42d3-a456-426614174000";
