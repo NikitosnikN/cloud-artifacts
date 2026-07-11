@@ -12,11 +12,11 @@
   ],
   "triggers": { "crons": ["0 * * * *"] },
   "vars": {
-    "MAX_HTML_BYTES": "2097152",
+    "MAX_HTML_BYTES": "5242880",
     "MAX_TTL_SECONDS": "31536000",
     "PUBLIC_BASE_URL": "https://artifacts.nikitayugov.com",
     // Exact IPv4 and/or IPv6 agent egress addresses allowed to use REST and MCP uploads.
-    "UPLOAD_ALLOWED_IPS": ["31.172.68.213"]
+    "UPLOAD_ALLOWED_IPS": ["*"]
   },
   "observability": {
     "enabled": true,

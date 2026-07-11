@@ -15,7 +15,7 @@ curl --fail-with-body \
 
 `ttl` is optional seconds, from 1 to 31536000. Without it, the artifact does not expire. A successful upload returns `201` with `id`, public `url`, and nullable `expiresAt`. Both `/{uuid}` and `/{uuid}.html` serve the document. Uploads are create-only; there is no update, delete, or list API.
 
-Only complete `text/html` documents are valid. The default size limit is 2 MiB. `Content-Length` and `X-Artifact-Upload: 1` are required. The custom header forces browser preflight, and served pages use a CSP sandbox with an opaque origin, preventing an uploaded page from silently creating more artifacts.
+Only complete `text/html` documents are valid. The default size limit is 5 MiB. `Content-Length` and `X-Artifact-Upload: 1` are required. The custom header forces browser preflight, and served pages use a CSP sandbox with an opaque origin, preventing an uploaded page from silently creating more artifacts.
 
 ## MCP
 
@@ -35,7 +35,7 @@ Both write surfaces are checked against `vars.UPLOAD_ALLOWED_IPS` in `wrangler.j
 "UPLOAD_ALLOWED_IPS": ["203.0.113.10", "2001:db8::10"]
 ```
 
-Only exact IPv4 and IPv6 addresses are accepted; CIDR ranges are not expanded. The current config allows this development machine's observed egress IP. Update the list whenever the client or agent egress address changes. A `"*"` entry explicitly disables enforcement and should only be used for diagnostics.
+Only exact IPv4 and IPv6 addresses are accepted; CIDR ranges are not expanded. Production currently uses `"*"`, so REST and MCP uploads are open from every source IP.
 
 ## Development and deployment
 

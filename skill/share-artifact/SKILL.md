@@ -1,15 +1,15 @@
 ---
-name: share-cloud-artifact
-description: Publish a complete HTML document to Cloud Artifacts and return its public URL. Use when an agent needs to share an HTML report, prototype, visualization, dashboard, or other self-contained web page with another person, optionally with an expiry time.
+name: share-artifact
+description: Publish a complete HTML document to artifacts and return its public URL. Use when an agent needs to share an HTML report, prototype, visualization, dashboard, or other self-contained web page with another person, optionally with an expiry time.
 ---
 
-# Share Cloud Artifact
+# Share Artifact
 
 Publish only complete HTML documents. Do not upload Markdown, JSON, images, or HTML fragments.
 
 ## Publish
 
-Prefer the `publish_html` tool when the Cloud Artifacts MCP server is connected at `https://artifacts.nikitayugov.com/mcp`. Pass the complete document as `html` and optional expiry as `ttlSeconds`, then return the public URL.
+Prefer the `publish_html` tool when the artifacts MCP server is connected at `https://artifacts.nikitayugov.com/mcp`. Pass the complete document as `html` and optional expiry as `ttlSeconds`, then return the public URL.
 
 When the MCP tool is unavailable, use HTTP:
 

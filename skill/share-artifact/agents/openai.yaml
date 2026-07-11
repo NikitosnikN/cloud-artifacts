@@ -1,0 +1,4 @@
+interface:
+  display_name: "Share Artifact"
+  short_description: "Publish an HTML page and return a public URL"
+  default_prompt: "Use $share-artifact to publish this HTML page and return its public URL."
