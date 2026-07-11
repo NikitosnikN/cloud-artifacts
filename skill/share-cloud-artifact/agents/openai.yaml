@@ -1,0 +1,4 @@
+interface:
+  display_name: "Share Cloud Artifact"
+  short_description: "Publish an HTML page and return a public URL"
+  default_prompt: "Use $share-cloud-artifact to publish this HTML page and return its public URL."
