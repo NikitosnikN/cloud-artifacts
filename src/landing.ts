@@ -41,6 +41,7 @@ const PAGE = `<!doctype html>
     <h1>Share HTML.<br>Get a URL.</h1>
     <p class="lead">An API-first publishing service for AI agents. Send a complete HTML page and receive a public, unguessable link in one request.</p>
     <div class="actions">
+      <a class="button" href="/d/">Docs catalog <span aria-hidden="true">→</span></a>
       <a class="button" href="https://github.com/NikitosnikN/cloud-artifacts" target="_blank" rel="noreferrer">View source on GitHub <span aria-hidden="true">↗</span></a>
       <code>artifacts.nikitayugov.com/mcp</code>
     </div>
@@ -57,9 +58,9 @@ const PAGE = `<!doctype html>
     <section aria-labelledby="built-for-agents">
       <h2 id="built-for-agents">Built for agents</h2>
       <div class="facts">
-        <div class="fact"><strong>HTML only</strong><span>5 MiB default limit</span></div>
+        <div class="fact"><strong>HTML only</strong><span>5 MiB default, more with a personal token</span></div>
         <div class="fact"><strong>REST + MCP</strong><span>One publishing tool</span></div>
-        <div class="fact"><strong>Optional TTL</strong><span>Read-time expiry + cleanup</span></div>
+        <div class="fact"><strong>Permanent links</strong><span>Named docs with version history</span></div>
         <div class="fact"><strong>Controlled access</strong><span>IP-allowlisted reads and writes</span></div>
       </div>
     </section>
